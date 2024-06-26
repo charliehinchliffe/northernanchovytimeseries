@@ -1,2 +1,9 @@
-# northernanchovytimeseries
-Model documentation for central stock of northern anchovy population model
+# Long-term population trend of the central stock of northern anchovy (Engraulis mordax) in the California Current system.
+This repository contains the model documentaion for the population model presented in the manuscript:
+
+* Title: "Long-term population trend of the central stock of northern anchovy (Engraulis mordax) in the California Current system"
+* Authors: Charles Hinchliffe, Peter T. Kuriyama, André E. Punt, John C. Field, Andrew R. Thompson, Jarrod A. Santora, Barbara A. Muhling, Stefan Koenigstein, Pierre-Yves Hernvann, Desiree Tommasi
+* Year of publication: XXX
+* Journal: XXX
+* doi: XXX
+
