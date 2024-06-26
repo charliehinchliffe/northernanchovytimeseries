@@ -7,3 +7,4 @@ This repository contains the model documentaion for the population model present
 * Journal: XXX
 * doi: XXX
 
+The model was run using Stock Synthesis 3.30.21.
