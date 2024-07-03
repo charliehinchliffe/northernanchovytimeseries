@@ -7,4 +7,4 @@ This repository contains the model documentaion for the population model present
 * Journal: XXX
 * doi: XXX
 
-The model was run using Stock Synthesis 3.30.22. The `SS_model_files` contain files to run the model, with the `.par`file of the run with the lowest -log(Likelihood) from 150 model runs with jittered starting values.
+The model was run using Stock Synthesis 3.30.22. `SS_model_files` contain files to run the model, with the `.par`file of the run with the lowest -log(Likelihood) from 150 model runs with jittered starting values.
