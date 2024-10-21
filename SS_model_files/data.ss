@@ -1,26 +1,27 @@
-#V3.30.22.00;_safe;_compile_date:_Oct 30 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1
-#_Stock_Synthesis_is_a_work_of_the_U.S._Government_and_is_not_subject_to_copyright_protection_in_the_United_States.
-#_Foreign_copyrights_may_apply._See_copyright.txt_for_more_information.
-#_User_support_available_at:NMFS.Stock.Synthesis@noaa.gov
-#_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
-#_Source_code_at:_https://github.com/nmfs-stock-synthesis/stock-synthesis
-
-#_Start_time: Fri Dec  8 11:55:04 2023
-#_echo_input_data
+#V3.30.17.01;_2021_06_15;_safe;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
+#Stock Synthesis (SS) is a work of the U.S. Government and is not subject to copyright protection in the United States.
+#Foreign copyrights may apply. See copyright.txt for more information.
+#_user_support_available_at:NMFS.Stock.Synthesis@noaa.gov
+#_user_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
+#_Start_time: Wed Nov 29 14:06:48 2023
+#_Number_of_datafiles: 1
 #C data file created using the SS_writedat function in the R package r4ss
 #C file write time: 2021-09-22 12:02:41
-#V3.30.22.00;_safe;_compile_date:_Oct 30 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1
+#_observed data: 
+#V3.30.17.01;_2021_06_15;_safe;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
+#Stock Synthesis (SS) is a work of the U.S. Government and is not subject to copyright protection in the United States.
+#Foreign copyrights may apply. See copyright.txt for more information.
 1965 #_StartYr
 2021 #_EndYr
 2 #_Nseas
  7 5 #_months/season
 1 #_Nsubseasons (even number, minimum is 2)
 8 #_spawn_month
-1 #_Nsexes: 1, 2, -1  (use -1 for 1 sex setup with SSB multiplied by female_frac parameter)
+1 #_Ngenders: 1, 2, -1  (use -1 for 1 sex setup with SSB multiplied by female_frac parameter)
 3 #_Nages=accumulator age, first age is always age 0
 1 #_Nareas
-14 #_Nfleets (including surveys)
-#_fleet_type: 1=catch fleet; 2=bycatch only fleet; 3=survey; 4=predator(M2) 
+8 #_Nfleets (including surveys)
+#_fleet_type: 1=catch fleet; 2=bycatch only fleet; 3=survey; 4=ignore 
 #_sample_timing: -1 for fishing fleet to use season-long catch-at-age for observations, or 1 to use observation month;  (always 1 for surveys)
 #_fleet_area:  area the fleet/survey operates in 
 #_units of catch:  1=bio; 2=num (ignored for surveys; their units read later)
@@ -30,17 +31,11 @@
  1 -1 1 1 0 MexCal_S1  # 1
  1 -1 1 1 0 MexCal_S2  # 2
  3 1 1 1 0 AT_summer  # 3
- 3 1 1 1 0 CalCOFI  # 4
+ 3 1 1 1 0 AT_spring  # 4
  3 1 1 1 0 RREAS_YOY  # 5
- 3 1 1 1 0 CalCOFI_eggs  # 6
- 3 1 1 1 0 AT_spring  # 7
- 3 1 1 1 0 ThayerBiomass  # 8
- 3 1 1 1 0 SPOTTER  # 9
- 3 1 1 1 0 RREAS_Adult  # 10
- 3 1 1 1 0 CASL_summer  # 11
- 3 1 1 1 0 SONAR_Methot89  # 12
- 3 1 1 1 0 EPI_Jacobson94  # 13
- 3 1 1 1 0 DEPM  # 14
+ 3 1 1 1 0 RELSSB  # 6
+ 3 1 1 1 0 CDFG  # 7
+ 3 1 1 1 0 DEPM  # 8
 #Bycatch_fleet_input_goes_next
 #a:  fleet index
 #b:  1=include dead bycatch in total dead catch for F0.1 and MSY optimizations and forecast ABC; 2=omit from total catch for these purposes (but still include the mortality)
@@ -286,26 +281,19 @@
 2021 2 2 21482.2 0.05
 -9999 0 0 0 0
 #
-#_CPUE_and_surveyabundance_and_index_observations
-#_Units: 0=numbers; 1=biomass; 2=F; 30=spawnbio; 31=exp(recdev); 36=recdev; 32=spawnbio*recdev; 33=recruitment; 34=depletion(&see Qsetup); 35=parm_dev(&see Qsetup)
+ #_CPUE_and_surveyabundance_observations
+#_Units:  0=numbers; 1=biomass; 2=F; 30=spawnbio; 31=recdev; 32=spawnbio*recdev; 33=recruitment; 34=depletion(&see Qsetup); 35=parm_dev(&see Qsetup)
 #_Errtype:  -1=normal; 0=lognormal; >0=T
 #_SD_Report: 0=no sdreport; 1=enable sdreport
-#_note that link functions are specified in Q_setup section of control file
 #_Fleet Units Errtype SD_Report
 1 1 0 0 # MexCal_S1
 2 1 0 0 # MexCal_S2
 3 1 0 0 # AT_summer
-4 30 0 0 # CalCOFI
+4 1 0 0 # AT_spring
 5 33 0 0 # RREAS_YOY
-6 30 0 0 # CalCOFI_eggs
-7 1 0 0 # AT_spring
-8 30 0 0 # ThayerBiomass
-9 30 0 0 # SPOTTER
-10 30 0 0 # RREAS_Adult
-11 30 0 0 # CASL_summer
-12 1 0 0 # SONAR_Methot89
-13 30 0 0 # EPI_Jacobson94
-14 30 0 0 # DEPM
+6 30 0 0 # RELSSB
+7 1 0 0 # CDFG
+8 30 0 0 # DEPM
 #_yr month fleet obs stderr
 2015 2 3 10500 0.42 #_ AT_summer
 2016 2 3 151000 0.51 #_ AT_summer
@@ -313,51 +301,8 @@
 2018 2 3 724000 0.17 #_ AT_summer
 2019 2 3 769000 0.14 #_ AT_summer
 2021 2 3 2.36e+06 0.15 #_ AT_summer
-1965 1 4 1648.47 0.173629 #_ CalCOFI
-1966 1 4 1420.85 0.16587 #_ CalCOFI
-1968 1 4 688.624 0.257771 #_ CalCOFI
-1969 1 4 1142.83 0.187342 #_ CalCOFI
-1972 1 4 262.58 0.299014 #_ CalCOFI
-1975 1 4 1592 0.224487 #_ CalCOFI
-1978 1 4 1078.36 0.190482 #_ CalCOFI
-1981 1 4 1216.37 0.17847 #_ CalCOFI
-1983 1 4 669.673 0.265454 #_ CalCOFI
-1984 1 4 564.483 0.17653 #_ CalCOFI
-1985 1 4 460.034 0.181056 #_ CalCOFI
-1986 1 4 1258.81 0.175465 #_ CalCOFI
-1987 1 4 2653.07 0.155751 #_ CalCOFI
-1988 1 4 541.101 0.177508 #_ CalCOFI
-1989 1 4 267.243 0.184693 #_ CalCOFI
-1990 1 4 1497.56 0.212619 #_ CalCOFI
-1991 1 4 716.312 0.176204 #_ CalCOFI
-1992 1 4 194.619 0.179275 #_ CalCOFI
-1993 1 4 182.888 0.202355 #_ CalCOFI
-1994 1 4 522.786 0.155562 #_ CalCOFI
-1995 1 4 119.257 0.207402 #_ CalCOFI
-1996 1 4 321.104 0.169601 #_ CalCOFI
-1997 1 4 146.749 0.218627 #_ CalCOFI
-1998 1 4 170.696 0.190366 #_ CalCOFI
-1999 1 4 247.466 0.274006 #_ CalCOFI
-2000 1 4 142.745 0.270731 #_ CalCOFI
-2001 1 4 69.8995 0.244705 #_ CalCOFI
-2002 1 4 150.865 0.204055 #_ CalCOFI
-2003 1 4 50.5721 0.276123 #_ CalCOFI
-2004 1 4 58.4004 0.291308 #_ CalCOFI
-2005 1 4 1433.84 0.203242 #_ CalCOFI
-2006 1 4 69.5779 0.292223 #_ CalCOFI
-2007 1 4 23.0539 0.324059 #_ CalCOFI
-2008 1 4 8.3462 0.445166 #_ CalCOFI
-2009 1 4 5.19088 0.500184 #_ CalCOFI
-2010 1 4 13.1624 0.516701 #_ CalCOFI
-2011 1 4 5.4808 0.491888 #_ CalCOFI
-2012 1 4 7.22806 0.584264 #_ CalCOFI
-2013 1 4 39.6748 0.39491 #_ CalCOFI
-2014 1 4 219.79 0.158174 #_ CalCOFI
-2015 1 4 121.137 0.287698 #_ CalCOFI
-2016 1 4 280.981 0.206719 #_ CalCOFI
-2017 1 4 391.605 0.189321 #_ CalCOFI
-2018 1 4 1781.93 0.169717 #_ CalCOFI
-2019 1 4 2423.61 0.219389 #_ CalCOFI
+2016 10 4 174000 0.33 #_ AT_spring
+2020 10 4 1.36e+06 0.17 #_ AT_spring
 2004 1 5 0.0292 1.17247 #_ RREAS_YOY
 2005 1 5 0.215 0.877594 #_ RREAS_YOY
 2006 1 5 0.0156 1.10884 #_ RREAS_YOY
@@ -374,226 +319,74 @@
 2018 1 5 2.01 0.59266 #_ RREAS_YOY
 2019 1 5 0.391 0.637308 #_ RREAS_YOY
 2021 1 5 0.187 0.887312 #_ RREAS_YOY
-1965 1 6 2373.02 0.226124 #_ CalCOFI_eggs
-1966 1 6 4425.97 0.230001 #_ CalCOFI_eggs
-1968 1 6 245.701 0.401483 #_ CalCOFI_eggs
-1969 1 6 1200.3 0.278928 #_ CalCOFI_eggs
-1972 1 6 988.896 0.446159 #_ CalCOFI_eggs
-1975 1 6 1117.29 0.308284 #_ CalCOFI_eggs
-1978 1 6 469.039 0.274797 #_ CalCOFI_eggs
-1981 1 6 321.288 0.298491 #_ CalCOFI_eggs
-1983 1 6 221.987 0.425304 #_ CalCOFI_eggs
-1984 1 6 607.461 0.322379 #_ CalCOFI_eggs
-1985 1 6 1422.33 0.244857 #_ CalCOFI_eggs
-1986 1 6 1223.15 0.240314 #_ CalCOFI_eggs
-1987 1 6 1357.23 0.279378 #_ CalCOFI_eggs
-1988 1 6 1174.31 0.275322 #_ CalCOFI_eggs
-1989 1 6 58.8717 0.394507 #_ CalCOFI_eggs
-1990 1 6 637.23 0.572465 #_ CalCOFI_eggs
-1991 1 6 518.947 0.304624 #_ CalCOFI_eggs
-1992 1 6 359.949 0.355371 #_ CalCOFI_eggs
-1993 1 6 139.017 0.347503 #_ CalCOFI_eggs
-1994 1 6 402.591 0.313646 #_ CalCOFI_eggs
-1995 1 6 635.334 0.309622 #_ CalCOFI_eggs
-1996 1 6 697.151 0.39869 #_ CalCOFI_eggs
-1997 1 6 1323.93 0.335326 #_ CalCOFI_eggs
-1998 1 6 181.13 0.382287 #_ CalCOFI_eggs
-1999 1 6 285.178 0.461793 #_ CalCOFI_eggs
-2000 1 6 352.136 0.422205 #_ CalCOFI_eggs
-2001 1 6 878.276 0.389797 #_ CalCOFI_eggs
-2002 1 6 285.108 0.343036 #_ CalCOFI_eggs
-2003 1 6 262.265 0.409848 #_ CalCOFI_eggs
-2004 1 6 826.838 0.299261 #_ CalCOFI_eggs
-2005 1 6 4536.33 0.309524 #_ CalCOFI_eggs
-2006 1 6 1708.88 0.291393 #_ CalCOFI_eggs
-2007 1 6 373.619 0.365071 #_ CalCOFI_eggs
-2008 1 6 328.136 0.436207 #_ CalCOFI_eggs
-2009 1 6 283.487 0.507263 #_ CalCOFI_eggs
-2010 1 6 32.3012 0.727848 #_ CalCOFI_eggs
-2011 1 6 93.828 0.61697 #_ CalCOFI_eggs
-2012 1 6 23.1869 1.79285 #_ CalCOFI_eggs
-2013 1 6 1.48493 0.850069 #_ CalCOFI_eggs
-2014 1 6 1293.13 0.322351 #_ CalCOFI_eggs
-2015 1 6 151.848 0.487137 #_ CalCOFI_eggs
-2016 1 6 367.649 0.51231 #_ CalCOFI_eggs
-2017 1 6 1066.74 0.327746 #_ CalCOFI_eggs
-2018 1 6 3206.32 0.239651 #_ CalCOFI_eggs
-2019 1 6 1773.59 0.300765 #_ CalCOFI_eggs
-2016 10 7 174000 0.33 #_ AT_spring
-2020 10 7 1.36e+06 0.17 #_ AT_spring
-1965 10 8 2015.47 0.18 #_ ThayerBiomass
-1967 10 8 447.79 0.56 #_ ThayerBiomass
-1968 10 8 1130.05 0.21 #_ ThayerBiomass
-1971 10 8 384.322 0.32 #_ ThayerBiomass
-1974 10 8 1822.1 0.3 #_ ThayerBiomass
-1977 10 8 477.024 0.29 #_ ThayerBiomass
-1978 10 8 436.228 0.3 #_ ThayerBiomass
-1980 10 8 610.86 0.26 #_ ThayerBiomass
-1981 10 8 318.208 0.66 #_ ThayerBiomass
-1983 10 8 399.958 0.31 #_ ThayerBiomass
-1985 10 8 2027.99 0.28 #_ ThayerBiomass
-1986 10 8 465.377 0.55 #_ ThayerBiomass
-1987 10 8 677.613 0.25 #_ ThayerBiomass
-1988 10 8 167.364 0.46 #_ ThayerBiomass
-1989 10 8 73.192 1.36 #_ ThayerBiomass
-1990 10 8 380.08 0.61 #_ ThayerBiomass
-1991 10 8 136.909 0.51 #_ ThayerBiomass
-1992 10 8 123.596 0.54 #_ ThayerBiomass
-1993 10 8 355.639 0.33 #_ ThayerBiomass
-1994 10 8 140.707 0.5 #_ ThayerBiomass
-1995 10 8 435.686 0.3 #_ ThayerBiomass
-1996 10 8 251.672 0.39 #_ ThayerBiomass
-1997 10 8 96.308 0.6 #_ ThayerBiomass
-1998 10 8 190.263 0.44 #_ ThayerBiomass
-1999 10 8 179.289 0.87 #_ ThayerBiomass
-2000 10 8 357.861 0.63 #_ ThayerBiomass
-2001 10 8 158.149 0.93 #_ ThayerBiomass
-2002 10 8 122.821 1.05 #_ ThayerBiomass
-2003 10 8 577.203 0.5 #_ ThayerBiomass
-2004 10 8 1927.75 0.29 #_ ThayerBiomass
-2005 10 8 1216.44 0.68 #_ ThayerBiomass
-2006 10 8 205.24 0.82 #_ ThayerBiomass
-2007 10 8 141.122 0.98 #_ ThayerBiomass
-2008 10 8 18.02 5.47 #_ ThayerBiomass
-2009 10 8 14.418 3.06 #_ ThayerBiomass
-2010 10 8 15.006 3 #_ ThayerBiomass
-2011 10 8 4.589 2.71 #_ ThayerBiomass
-2012 10 8 7.453 2.13 #_ ThayerBiomass
-2013 10 8 75.261 0.68 #_ ThayerBiomass
-2014 10 8 92.929 0.61 #_ ThayerBiomass
-2015 10 8 151.428 0.49 #_ ThayerBiomass
-2016 10 8 517.751 0.28 #_ ThayerBiomass
-2017 10 8 2222.42 0.17 #_ ThayerBiomass
-2018 10 8 1440 0.2 #_ ThayerBiomass
-2019 10 8 251.32 0.74 #_ ThayerBiomass
-2020 10 8 285.43 0.36 #_ ThayerBiomass
-1965 1 9 111.6 0.3 #_ SPOTTER
-1966 1 9 174.8 0.28 #_ SPOTTER
-1967 1 9 39.1 0.32 #_ SPOTTER
-1968 1 9 102.8 0.3 #_ SPOTTER
-1969 1 9 294.4 0.28 #_ SPOTTER
-1970 1 9 118.8 0.3 #_ SPOTTER
-1971 1 9 183.4 0.28 #_ SPOTTER
-1972 1 9 188.5 0.29 #_ SPOTTER
-1973 1 9 970.4 0.28 #_ SPOTTER
-1974 1 9 655.1 0.27 #_ SPOTTER
-1975 1 9 428.4 0.29 #_ SPOTTER
-1976 1 9 457.7 0.28 #_ SPOTTER
-1977 1 9 298.7 0.31 #_ SPOTTER
-1978 1 9 856.4 0.31 #_ SPOTTER
-1979 1 9 832 0.34 #_ SPOTTER
-1980 1 9 408.3 0.37 #_ SPOTTER
-1981 1 9 312.3 0.36 #_ SPOTTER
-1982 1 9 66.8 0.52 #_ SPOTTER
-1983 1 9 37.2 0.52 #_ SPOTTER
-1984 1 9 391.1 0.39 #_ SPOTTER
-1985 1 9 256.7 0.4 #_ SPOTTER
-1986 1 9 91.2 0.4 #_ SPOTTER
-1987 1 9 138.7 0.39 #_ SPOTTER
-1988 1 9 272 0.41 #_ SPOTTER
-1989 1 9 65.8 0.5 #_ SPOTTER
-1990 1 9 74.6 0.47 #_ SPOTTER
-1991 1 9 38.7 1.39 #_ SPOTTER
-1992 1 9 58.5 0.46 #_ SPOTTER
-1993 1 9 93.5 0.44 #_ SPOTTER
-1994 1 9 174 0.58 #_ SPOTTER
-1995 1 9 220.2 0.59 #_ SPOTTER
-1996 1 9 462.2 1.08 #_ SPOTTER
-2004 1 10 18.2895 0.461058 #_ RREAS_Adult
-2005 1 10 21.7241 0.364928 #_ RREAS_Adult
-2006 1 10 49.339 0.408649 #_ RREAS_Adult
-2007 1 10 29.0276 0.607653 #_ RREAS_Adult
-2008 1 10 8.30295 0.665378 #_ RREAS_Adult
-2009 1 10 3.411 0.863813 #_ RREAS_Adult
-2010 1 10 0.00611809 1.33673 #_ RREAS_Adult
-2011 1 10 0.0079726 1.93911 #_ RREAS_Adult
-2012 1 10 0.00586873 6.51457 #_ RREAS_Adult
-2013 1 10 0.156426 0.816628 #_ RREAS_Adult
-2014 1 10 0.026773 0.941442 #_ RREAS_Adult
-2015 1 10 13.5238 0.829789 #_ RREAS_Adult
-2016 1 10 4.668 0.728245 #_ RREAS_Adult
-2017 1 10 69.2885 0.659087 #_ RREAS_Adult
-2018 1 10 191.07 0.53775 #_ RREAS_Adult
-2019 1 10 39.4125 0.276887 #_ RREAS_Adult
-2020 1 10 356.64 0.384534 #_ RREAS_Adult
-2021 1 10 38.0015 0.307116 #_ RREAS_Adult
-2022 1 -10 1.60694 0.538678 #_ RREAS_Adult
-1981 2 11 1.23396 0.262284 #_ CASL_summer
-1982 2 11 1.61211 0.102809 #_ CASL_summer
-1983 2 11 2.1887 0.0796817 #_ CASL_summer
-1984 2 11 1.89351 0.0987609 #_ CASL_summer
-1985 2 11 3.58254 0.0746676 #_ CASL_summer
-1986 2 11 4.13649 0.0665928 #_ CASL_summer
-1987 2 11 3.24698 0.0845128 #_ CASL_summer
-1988 2 11 2.15428 0.0935926 #_ CASL_summer
-1989 2 11 2.4769 0.0830771 #_ CASL_summer
-1990 2 11 1.00078 0.205259 #_ CASL_summer
-1991 2 11 0.324003 0.323152 #_ CASL_summer
-1992 2 11 0.278848 0.246239 #_ CASL_summer
-1993 2 11 0.460043 0.234763 #_ CASL_summer
-1994 2 11 0.730781 0.186757 #_ CASL_summer
-1995 2 11 0.356555 0.260638 #_ CASL_summer
-1996 2 11 0.303137 0.314079 #_ CASL_summer
-1997 2 11 0.302077 0.287911 #_ CASL_summer
-1998 2 11 0.486856 0.154395 #_ CASL_summer
-1999 2 11 0.974884 0.125667 #_ CASL_summer
-2000 2 11 1.26103 0.113036 #_ CASL_summer
-2001 2 11 0.596032 0.206288 #_ CASL_summer
-2002 2 11 0.979322 0.14598 #_ CASL_summer
-2003 2 11 1.32331 0.0890092 #_ CASL_summer
-2004 2 11 1.40588 0.140705 #_ CASL_summer
-2005 2 11 1.59428 0.0853182 #_ CASL_summer
-2006 2 11 1.43816 0.0899727 #_ CASL_summer
-2007 2 11 0.94873 0.119718 #_ CASL_summer
-2008 2 11 1.24937 0.162129 #_ CASL_summer
-2009 2 11 0.608936 0.181243 #_ CASL_summer
-2010 2 11 0.325118 0.237512 #_ CASL_summer
-2011 2 11 0.165523 0.4066 #_ CASL_summer
-2012 2 11 0.0967958 0.428617 #_ CASL_summer
-2013 2 11 0.277165 0.340301 #_ CASL_summer
-2014 2 11 0.1879 0.422505 #_ CASL_summer
-2015 2 11 1.4361 0.124362 #_ CASL_summer
-2016 2 11 2.13598 0.209605 #_ CASL_summer
-2017 2 11 3.18346 0.188654 #_ CASL_summer
-2018 2 11 2.87066 0.201638 #_ CASL_summer
-2019 2 11 3.86223 0.119232 #_ CASL_summer
-2021 2 11 3.83808 0.0589177 #_ CASL_summer
-2022 2 -11 3.92569 0.0880468 #_ CASL_summer
-1968 9 12 438000 0.46 #_ SONAR_Methot89
-1969 9 12 275000 0.46 #_ SONAR_Methot89
-1970 9 12 233000 0.46 #_ SONAR_Methot89
-1971 9 12 822000 0.46 #_ SONAR_Methot89
-1972 9 12 1.671e+06 0.46 #_ SONAR_Methot89
-1973 9 12 947000 0.46 #_ SONAR_Methot89
-1974 9 12 3.086e+06 0.46 #_ SONAR_Methot89
-1976 9 12 1.984e+06 0.46 #_ SONAR_Methot89
-1977 9 12 392000 0.46 #_ SONAR_Methot89
-1978 9 12 292000 0.46 #_ SONAR_Methot89
-1979 9 12 604000 0.46 #_ SONAR_Methot89
-1980 9 12 567000 0.46 #_ SONAR_Methot89
-1981 9 12 250000 0.46 #_ SONAR_Methot89
-1982 9 12 532000 0.46 #_ SONAR_Methot89
-1983 9 12 573000 0.46 #_ SONAR_Methot89
-1984 9 12 1.015e+06 0.46 #_ SONAR_Methot89
-1979 8 13 2.16 0.27 #_ EPI_Jacobson94
-1980 8 13 2.96 0.14 #_ EPI_Jacobson94
-1981 8 13 1.9 0.17 #_ EPI_Jacobson94
-1982 8 13 2.24 0.34 #_ EPI_Jacobson94
-1983 8 13 5.75 0.11 #_ EPI_Jacobson94
-1984 8 13 6.89 0.48 #_ EPI_Jacobson94
-1985 8 13 7.13 0.32 #_ EPI_Jacobson94
-1986 8 13 4.97 0.16 #_ EPI_Jacobson94
-1987 8 13 6.26 0.33 #_ EPI_Jacobson94
-1988 8 13 1.47 0.29 #_ EPI_Jacobson94
-1989 8 13 2.31 0.35 #_ EPI_Jacobson94
-1990 8 13 1.82 0.23 #_ EPI_Jacobson94
-1991 8 13 0.86 0.32 #_ EPI_Jacobson94
-1979 8 14 870000 0.26 #_ DEPM
-1980 8 14 635000 0.22 #_ DEPM
-1981 8 14 415000 0.06 #_ DEPM
-1982 8 14 652000 0.21 #_ DEPM
-1983 8 14 309000 0.17 #_ DEPM
-1984 8 14 522000 0.26 #_ DEPM
+1965 10 6 2015.47 0.18 #_ RELSSB
+1967 10 6 447.79 0.56 #_ RELSSB
+1968 10 6 1130.05 0.21 #_ RELSSB
+1971 10 6 384.322 0.32 #_ RELSSB
+1974 10 6 1822.1 0.3 #_ RELSSB
+1977 10 6 477.024 0.29 #_ RELSSB
+1978 10 6 436.228 0.3 #_ RELSSB
+1980 10 6 610.86 0.26 #_ RELSSB
+1981 10 6 318.208 0.66 #_ RELSSB
+1983 10 6 399.958 0.31 #_ RELSSB
+1985 10 6 2027.99 0.28 #_ RELSSB
+1986 10 6 465.377 0.55 #_ RELSSB
+1987 10 6 677.613 0.25 #_ RELSSB
+1988 10 6 167.364 0.46 #_ RELSSB
+1989 10 6 73.192 1.36 #_ RELSSB
+1990 10 6 380.08 0.61 #_ RELSSB
+1991 10 6 136.909 0.51 #_ RELSSB
+1992 10 6 123.596 0.54 #_ RELSSB
+1993 10 6 355.639 0.33 #_ RELSSB
+1994 10 6 140.707 0.5 #_ RELSSB
+1995 10 6 435.686 0.3 #_ RELSSB
+1996 10 6 251.672 0.39 #_ RELSSB
+1997 10 6 96.308 0.6 #_ RELSSB
+1998 10 6 190.263 0.44 #_ RELSSB
+1999 10 6 179.289 0.87 #_ RELSSB
+2000 10 6 357.861 0.63 #_ RELSSB
+2001 10 6 158.149 0.93 #_ RELSSB
+2002 10 6 122.821 1.05 #_ RELSSB
+2003 10 6 577.203 0.5 #_ RELSSB
+2004 10 6 1927.75 0.29 #_ RELSSB
+2005 10 6 1216.44 0.68 #_ RELSSB
+2006 10 6 205.24 0.82 #_ RELSSB
+2007 10 6 141.122 0.98 #_ RELSSB
+2008 10 6 18.02 5.47 #_ RELSSB
+2009 10 6 14.418 3.06 #_ RELSSB
+2010 10 6 15.006 3 #_ RELSSB
+2011 10 6 4.589 2.71 #_ RELSSB
+2012 10 6 7.453 2.13 #_ RELSSB
+2013 10 6 75.261 0.68 #_ RELSSB
+2014 10 6 92.929 0.61 #_ RELSSB
+2015 10 6 151.428 0.49 #_ RELSSB
+2016 10 6 517.751 0.28 #_ RELSSB
+2017 10 6 2222.42 0.17 #_ RELSSB
+2018 10 6 1440 0.2 #_ RELSSB
+2019 10 6 251.32 0.74 #_ RELSSB
+2020 10 6 285.43 0.36 #_ RELSSB
+1968 9 7 438000 0.46 #_ CDFG
+1969 9 7 275000 0.46 #_ CDFG
+1970 9 7 233000 0.46 #_ CDFG
+1971 9 7 822000 0.46 #_ CDFG
+1972 9 7 1.671e+06 0.46 #_ CDFG
+1973 9 7 947000 0.46 #_ CDFG
+1974 9 7 3.086e+06 0.46 #_ CDFG
+1976 9 7 1.984e+06 0.46 #_ CDFG
+1977 9 7 392000 0.46 #_ CDFG
+1978 9 7 292000 0.46 #_ CDFG
+1979 9 7 604000 0.46 #_ CDFG
+1980 9 7 567000 0.46 #_ CDFG
+1981 9 7 250000 0.46 #_ CDFG
+1982 9 7 532000 0.46 #_ CDFG
+1983 9 7 573000 0.46 #_ CDFG
+1984 9 7 1.015e+06 0.46 #_ CDFG
+1979 8 8 870000 0.26 #_ DEPM
+1980 8 8 635000 0.22 #_ DEPM
+1981 8 8 378000 0.06 #_ DEPM
+1982 8 8 652000 0.21 #_ DEPM
+1983 8 8 309000 0.17 #_ DEPM
+1984 8 8 522000 0.26 #_ DEPM
 -9999 1 1 1 1 # terminator for survey observations 
 #
 0 #_N_fleets_with_discard
@@ -615,31 +408,24 @@
 # no additional input for option 1
 # read binwidth, minsize, lastbin size for option 2
 # read N poplen bins, then vector of bin lower boundaries, for option 3
-1 # use length composition data (0/1/2) where 2 invokes new comp_control format
+1 # use length composition data (0/1)
 #_mintailcomp: upper and lower distribution for females and males separately are accumulated until exceeding this level.
 #_addtocomp:  after accumulation of tails; this value added to all bins
-#_combM+F: males and females treated as combined sex below this bin number 
+#_combM+F: males and females treated as combined gender below this bin number 
 #_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
-#_Comp_Error:  0=multinomial, 1=dirichlet using Theta*n, 2=dirichlet using beta, 3=MV_Tweedie
-#_ParmSelect:  consecutive index for dirichlet or MV_Tweedie
+#_Comp_Error:  0=multinomial, 1=dirichlet
+#_ParmSelect:  parm number for dirichlet
 #_minsamplesize: minimum sample size; set to 1 to match 3.24, minimum value is 0.001
 #
-#_Using old format for composition controls
 #_mintailcomp addtocomp combM+F CompressBins CompError ParmSelect minsamplesize
 -0.0001 0.0001 0 0 0 0 1 #_fleet:1_MexCal_S1
 -0.0001 0.0001 0 0 0 0 1 #_fleet:2_MexCal_S2
 -0.0001 0.0001 0 0 0 0 1 #_fleet:3_AT_summer
--0.0001 0.0001 0 0 0 0 1 #_fleet:4_CalCOFI
+-0.0001 0.0001 0 0 0 0 1 #_fleet:4_AT_spring
 -0.0001 0.0001 0 0 0 0 1 #_fleet:5_RREAS_YOY
--0.0001 0.0001 0 0 0 0 1 #_fleet:6_CalCOFI_eggs
--0.0001 0.0001 0 0 0 0 1 #_fleet:7_AT_spring
--0.0001 0.0001 0 0 0 0 1 #_fleet:8_ThayerBiomass
--0.0001 0.0001 0 0 0 0 1 #_fleet:9_SPOTTER
--0.0001 0.0001 0 0 0 0 1 #_fleet:10_RREAS_Adult
--0.0001 0.0001 0 0 0 0 1 #_fleet:11_CASL_summer
--0.0001 0.0001 0 0 0 0 1 #_fleet:12_SONAR_Methot89
--0.0001 0.0001 0 0 0 0 1 #_fleet:13_EPI_Jacobson94
--0.0001 0.0001 0 0 0 0 1 #_fleet:14_DEPM
+-0.0001 0.0001 0 0 0 0 1 #_fleet:6_RELSSB
+-0.0001 0.0001 0 0 0 0 1 #_fleet:7_CDFG
+-0.0001 0.0001 0 0 0 0 1 #_fleet:8_DEPM
 # sex codes:  0=combined; 1=use female only; 2=use male only; 3=use both as joint sexxlength distribution
 # partition codes:  (0=combined; 1=discard; 2=retained
 27 #_N_LengthBins; then enter lower edge of each length bin
@@ -664,7 +450,7 @@
  2017 2 -3 0 0 2.4 0 0.0166667 0.0166667 0.0166667 0 0.0166667 0.0833333 0.133333 0.116667 0.0166667 0.05 0.05 0.05 0.0333333 0.166667 0.133333 0.0666667 0.0166667 0 0.0166667 0 0 0 0 0 0 0
  2018 2 -3 0 0 18.56 0 0 0 0.00215517 0 0.0150862 0.0409483 0.127155 0.109914 0.0883621 0.105603 0.0862069 0.0840517 0.0818965 0.0581897 0.0538793 0.0775862 0.0387931 0.0237069 0.00431034 0.00215517 0 0 0 0 0 0
  2019 2 -3 0 0 20 0 0 0.016 0.076 0.08 0.092 0.084 0.062 0.06 0.034 0.024 0.072 0.054 0.072 0.074 0.056 0.084 0.034 0.022 0.004 0 0 0 0 0 0 0
- 2020 10 -3 0 0 16.68 0 0 0 0 0 0.00239808 0.00479616 0.0167866 0.0839329 0.0959233 0.136691 0.107914 0.0767386 0.100719 0.103118 0.110312 0.057554 0.0647482 0.0359712 0.00239808 0 0 0 0 0 0 0
+ 2020 10 -4 0 0 16.68 0 0 0 0 0 0.00239808 0.00479616 0.0167866 0.0839329 0.0959233 0.136691 0.107914 0.0767386 0.100719 0.103118 0.110312 0.057554 0.0647482 0.0359712 0.00239808 0 0 0 0 0 0 0
 -9999 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 #
 4 #_N_age_bins
@@ -684,27 +470,21 @@
  0.32 0.32 0.66 0.9
 #_mintailcomp: upper and lower distribution for females and males separately are accumulated until exceeding this level.
 #_addtocomp:  after accumulation of tails; this value added to all bins
-#_combM+F: males and females treated as combined sex below this bin number 
+#_combM+F: males and females treated as combined gender below this bin number 
 #_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
-#_Comp_Error:  0=multinomial, 1=dirichlet using Theta*n, 2=dirichlet using beta, 3=MV_Tweedie
-#_ParmSelect:  consecutive index for dirichlet or MV_Tweedie
+#_Comp_Error:  0=multinomial, 1=dirichlet
+#_ParmSelect:  parm number for dirichlet
 #_minsamplesize: minimum sample size; set to 1 to match 3.24, minimum value is 0.001
 #
 #_mintailcomp addtocomp combM+F CompressBins CompError ParmSelect minsamplesize
--0.0001 0.0001 -1 0 0 0 1 #_fleet:1_MexCal_S1
--0.0001 0.0001 -1 0 0 0 1 #_fleet:2_MexCal_S2
--0.0001 0.0001 -1 0 0 0 1 #_fleet:3_AT_summer
--0.0001 0.0001 -1 0 0 0 1 #_fleet:4_CalCOFI
--0.0001 0.0001 -1 0 0 0 1 #_fleet:5_RREAS_YOY
--0.0001 0.0001 -1 0 0 0 1 #_fleet:6_CalCOFI_eggs
--0.0001 0.0001 -1 0 0 0 1 #_fleet:7_AT_spring
--0.0001 0.0001 -1 0 0 0 1 #_fleet:8_ThayerBiomass
--0.0001 0.0001 -1 0 0 0 1 #_fleet:9_SPOTTER
--0.0001 0.0001 -1 0 0 0 1 #_fleet:10_RREAS_Adult
--0.0001 0.0001 -1 0 0 0 1 #_fleet:11_CASL_summer
--0.0001 0.0001 -1 0 0 0 1 #_fleet:12_SONAR_Methot89
--0.0001 0.0001 -1 0 0 0 1 #_fleet:13_EPI_Jacobson94
--0.0001 0.0001 -1 0 0 0 1 #_fleet:14_DEPM
+-0.0001 0.0001 0 0 0 0 1 #_fleet:1_MexCal_S1
+-0.0001 0.0001 0 0 0 0 1 #_fleet:2_MexCal_S2
+-0.0001 0.0001 0 0 0 0 1 #_fleet:3_AT_summer
+-0.0001 0.0001 0 0 0 0 1 #_fleet:4_AT_spring
+-0.0001 0.0001 0 0 0 0 1 #_fleet:5_RREAS_YOY
+-0.0001 0.0001 0 0 0 0 1 #_fleet:6_RELSSB
+-0.0001 0.0001 0 0 0 0 1 #_fleet:7_CDFG
+-0.0001 0.0001 0 0 0 0 1 #_fleet:8_DEPM
 2 #_Lbin_method_for_Age_Data: 1=poplenbins; 2=datalenbins; 3=lengths
 # sex codes:  0=combined; 1=use female only; 2=use male only; 3=use both as joint sexxlength distribution
 # partition codes:  (0=combined; 1=discard; 2=retained
@@ -770,27 +550,27 @@
  2017 2 3 0 0 5 -1 -1 5 0.298105 0.427975 0.0400293 0.23389
  2018 2 3 0 0 5 -1 -1 24 0.334392 0.367453 0.160629 0.137525
  2019 2 3 0 0 6 -1 -1 26 0.651372 0.157144 0.13254 0.0589442
- 2016 10 7 0 0 5 -1 -1 11 0.198463 0.536948 0.202329 0.0622605
- 2020 10 7 0 0 6 -1 -1 18 0.453865 0.332489 0.116927 0.080463
- 1966 12 12 0 0 1 -1 -1 3.28 0 0.0631 0.1912 0.75
- 1967 9 12 0 0 1 -1 -1 4.2 0 0.4216 0.3047 0.27
- 1969 9 12 0 0 1 -1 -1 8.24 0 0.359 0.322 0.32
- 1970 9 12 0 0 1 -1 -1 6.92 0 0.1958 0.3007 0.5
- 1971 12 12 0 0 1 -1 -1 7.6 0 0.122 0.412 0.47
- 1972 9 12 0 0 1 -1 -1 9.96 0 0.043 0.377 0.58
- 1973 12 12 0 0 1 -1 -1 11.6 0 0.028 0.1439 0.83
- 1974 9 12 0 0 1 -1 -1 8.8 0 0.084 0.153 0.76
- 1975 12 12 0 0 1 -1 -1 12.8 0 0.016 0.024 0.96
- 1976 9 12 0 0 1 -1 -1 18.8 0 0.45 0.047 0.5
- 1977 9 12 0 0 1 -1 -1 15.84 0 0.0961 0.4595 0.44
- 1978 9 12 0 0 1 -1 -1 20.32 0 0.6527 0.0951 0.25
- 1979 9 12 0 0 1 -1 -1 24.4 0 0.3483 0.5015 0.15
- 1980 9 12 0 0 1 -1 -1 22.2 0 0.4535 0.3053 0.24
- 1981 9 12 0 0 1 -1 -1 26.04 0 0.0932 0.3607 0.55
- 1982 9 12 0 0 1 -1 -1 23.28 0 0.742 0.112 0.15
- 1983 9 12 0 0 1 -1 -1 20.72 0 0.3483 0.5856 0.07
- 1984 9 12 0 0 1 -1 -1 18.56 0 0.7194 0.1914 0.09
- 1985 9 12 0 0 1 -1 -1 31.6 0 0.17 0.598 0.23
+ 2016 10 4 0 0 5 -1 -1 11 0.198463 0.536948 0.202329 0.0622605
+ 2020 10 4 0 0 6 -1 -1 18 0.453865 0.332489 0.116927 0.080463
+ 1966 12 7 0 0 1 -1 -1 3.28 0 0.0631 0.1912 0.75
+ 1967 9 7 0 0 1 -1 -1 4.2 0 0.4216 0.3047 0.27
+ 1969 9 7 0 0 1 -1 -1 8.24 0 0.359 0.322 0.32
+ 1970 9 7 0 0 1 -1 -1 6.92 0 0.1958 0.3007 0.5
+ 1971 12 7 0 0 1 -1 -1 7.6 0 0.122 0.412 0.47
+ 1972 9 7 0 0 1 -1 -1 9.96 0 0.043 0.377 0.58
+ 1973 12 7 0 0 1 -1 -1 11.6 0 0.028 0.1439 0.83
+ 1974 9 7 0 0 1 -1 -1 8.8 0 0.084 0.153 0.76
+ 1975 12 7 0 0 1 -1 -1 12.8 0 0.016 0.024 0.96
+ 1976 9 7 0 0 1 -1 -1 18.8 0 0.45 0.047 0.5
+ 1977 9 7 0 0 1 -1 -1 15.84 0 0.0961 0.4595 0.44
+ 1978 9 7 0 0 1 -1 -1 20.32 0 0.6527 0.0951 0.25
+ 1979 9 7 0 0 1 -1 -1 24.4 0 0.3483 0.5015 0.15
+ 1980 9 7 0 0 1 -1 -1 22.2 0 0.4535 0.3053 0.24
+ 1981 9 7 0 0 1 -1 -1 26.04 0 0.0932 0.3607 0.55
+ 1982 9 7 0 0 1 -1 -1 23.28 0 0.742 0.112 0.15
+ 1983 9 7 0 0 1 -1 -1 20.72 0 0.3483 0.5856 0.07
+ 1984 9 7 0 0 1 -1 -1 18.56 0 0.7194 0.1914 0.09
+ 1985 9 7 0 0 1 -1 -1 31.6 0 0.17 0.598 0.23
 -9999  0 0 0 0 0 0 0 0 0 0 0 0
 #
 0 #_Use_MeanSize-at-Age_obs (0/1)
@@ -799,10 +579,9 @@
 # -2 in yr will subtract mean for that env_var; -1 will subtract mean and divide by stddev (e.g. Z-score)
 #Yr Variable Value
 #
-# Sizefreq data. Defined by method because a fleet can use multiple methods
-0 # N sizefreq methods to read (or -1 for expanded options)
-# 
-0 # do tags (0/1/2); where 2 allows entry of TG_min_recap
+0 # N sizefreq methods to read 
+#
+0 # do tags (0/1)
 #
 0 #    morphcomp data(0/1) 
 #  Nobs, Nmorphs, mincomp
@@ -814,3 +593,4 @@
 #
 999
 
+ENDDATA
